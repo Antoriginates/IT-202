@@ -1,0 +1,135 @@
+<?php
+
+session_start();
+
+include ( "myfunctions.php" );
+include ( "account.php" );
+include ( "login.php" );
+
+gatekeeper();
+
+echo"<p align=\"CENTER\">Welcome ". $_SESSION['user']. " your current balance is: " . $_SESSION["Current_Balance"];
+
+
+ ?>
+
+ <style>
+
+ #field  {width: 70%; margin: auto;}
+ 
+ label{
+ display:inline-block;
+ width: 200px;
+ margin-right: 30px;
+ text-align: right;
+ }
+ 
+ input{
+ }
+ 
+ #amount {visibility: hidden;}
+ #number {visibility: hidden;}
+ #AmountLabel {visibility: hidden;}
+ #NumberLabel {visibility: hidden;}
+ 
+ input [type=text], textarea{
+	@include transition(all .15s ease-in-out);
+	outline: none;
+	padding: 4px 0px 4px 4px;
+	margin: 6px 1px 4px 0px;
+	border: 1px solid #DDDDDD;
+	}
+	
+ input[type=text]:focus, textarea:focus {
+	@include box-shadow(0 0 5px rgba(176, 244, 66, 2));
+	padding: 3px 0px 3px 3px;
+	margin: 4px 1px 2px 0px;
+	border: 2px solid rgba(176, 244, 66, 2);
+	}
+ </style>
+
+ <script>
+ function appear(){
+
+   ptr1 = document.getElementById('amount')
+   ptr2 = document.getElementById('choice')
+   ptr3 = document.getElementById('number')
+   ptr4 = document.getElementById('AmountLabel')
+   ptr5 = document.getElementById('NumberLabel')
+	
+   $menuvalue = ptr2.value
+
+   if ($menuvalue == "D" ) {
+     ptr1.style.visibility = "visible";
+	 ptr3.style.visibility = "hidden";
+	 ptr4.style.visibility = "visible";
+	 ptr5.style.visibility = "hidden";
+
+	 a();
+     return;
+   }
+   if ( $menuvalue == "W") {
+     ptr1.style.visibility = "visible";
+	 ptr3.style.visibility = "hidden";
+	 ptr4.style.visibility = "visible";
+	 ptr5.style.visibility = "hidden";
+
+	 b();
+     return;
+   }
+   if ( $menuvalue == "S") {
+     ptr1.style.visibility = "hidden";
+	 ptr3.style.visibility = "visible";
+	 ptr4.style.visibility = "hidden";
+	 ptr5.style.visibility = "visible";
+	 c();
+     return;
+   }
+   else {
+     ptr1.style.visibility = "hidden";
+	 ptr3.style.visibility = "hidden";
+	 ptr4.style.visibility = "hidden";
+	 ptr5.style.visibility = "hidden";
+
+	 c();
+   }
+
+ }
+
+ </script>
+
+
+ <form action="formpagehandler.php">
+   <fieldset id="field"><legend> Bank Application </legend>
+
+   
+      <br>
+   <label for = "user" id = UserLabel >User</label>
+   <input type=text name="user"	id = "user" placeholder = "Required" ><br>
+   
+   <label for = "pass" id = PassLabel>Pass</label>
+   <input type=text name="pass"	id = "pass" placeholder = "Required" ><br>
+   
+   <label for = "amount" id = AmountLabel >Amount</label>
+   <input type=text name="amount" id = "amount" placeholder = "default 0.00" ><br>
+   
+   <label for = "number" id = NumberLabel ><br><br>Number<br></label>
+   <input type=text name="number" id = "number" placeholder = "default 2" ><br>
+   
+   
+   <input type="number"  step="1"  name="amount" id="amount"> Amount<br><br>
+
+   <select name="choice" id="choice" onchange="appear()">
+     <<option value="C">Choose</option>
+     <<option value="S">Show</option>
+     <<option value="D">Deposit</option>
+     <<option value="W">Withdraw</option>
+
+   </select><br><br>
+   <input type="checkbox" name="mail" value="Yes"> Mail Copy <br><br>
+   <input type="submit" name="Submit">
+ </fieldset>
+   <br>
+   </form>
+<a href="logout.php">Logout</a>
+<p> </p>
