@@ -5,7 +5,8 @@ session_start();
 include ( "myfunctions.php" );
 include ( "account.php" );
 include ( "login.php" );
-
+include ( "admin_login.php" );
+include ( "admin_login_action.php" );
 gatekeeper();
 
 echo"<p align=\"CENTER\">Welcome ". $_SESSION['user']. " your current balance is: " . $_SESSION["Current_Balance"];
